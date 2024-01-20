@@ -1,25 +1,16 @@
-import './style.css'
-import javascriptLogo from './javascript.svg'
-import viteLogo from '/vite.svg'
-import { setupCounter } from './counter.js'
-import apiKey from './config.js'
+function queryKey() {
+  const apiKey = document.getElementById('apiKey').value;
 
-document.querySelector('#app').innerHTML = `
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">
-      <img src="${javascriptLogo}" class="logo vanilla" alt="JavaScript logo" />
-    </a>
-    <h1>Hello Vite!</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite logo to learn more
-    </p>
-  </div>
-`
+  if (apiKey.trim() !== '') {
+    console.log('API Key:', apiKey);
 
-setupCounter(document.querySelector('#counter'))
+    // hide the form and go to next page
+
+  } else {
+    // Inform the user that the API key is required
+    alert('Please enter your API key.');
+  }
+}
+
+// Next page
+// Format super heros
