@@ -4,16 +4,32 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
   <title>API Key Input</title>
 </head>
 
 <body>
-  <h1>Enter Your API Key</h1>
-  <form id="apiKeyForm">
-    <label for="apiKey">API Key:</label>
-    <input type="text" id="apiKey" required>
-    <button type="button" onclick="queryKey()">Submit</button>
-  </form>
+  <div class="formDiv" id="APIForm">
+    <h1>Enter Your API Key</h1>
+    <form id="apiKeyForm">
+      <label for="apiKey">API Key:</label>
+      <input type="text" id="apiKey" required>
+      <button type="button" onclick="queryKey()">Submit</button>
+    </form>
+  </div>
+
+  <div class="formDiv" id="IDForm" style='display:none'>
+    <h1>Enter ID for SuperHero</h1>
+    <form id="heroIDForm">
+      <label for="ID">ID:</label>
+      <input type="text" id="ID" required>
+      <button type="button" onclick="queryID()">Submit</button>
+    </form>
+  </div>
+
+  <div id="card-container">
+    
+  </div>
 </body>
 <script src="main.js"></script>
 

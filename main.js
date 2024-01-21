@@ -1,16 +1,46 @@
+let apiKey;
+
 function queryKey() {
-  const apiKey = document.getElementById('apiKey').value;
-
+  const userKey = document.getElementById('apiKey').value;
+  apiKey = userKey;
   if (apiKey.trim() !== '') {
-    console.log('API Key:', apiKey);
-
-    // hide the form and go to next page
-
+    // Hide APIKey Form
+    var apiForm = document.getElementById('APIForm');
+    apiForm.style.display = 'none';
+    
+    // Reveal ID Form
+    var idForm = document.getElementById('IDForm');
+    idForm.style.display = 'block';
   } else {
-    // Inform the user that the API key is required
+    // Empty key checking
     alert('Please enter your API key.');
   }
 }
 
-// Next page
-// Format super heros
+function queryID() {
+  const id = document.getElementById('ID').value;
+  if (id.trim() !== '') {
+    console.log(id);
+  } else {
+    alert('Please enter your API key.');
+    return;
+  }
+
+  var url = `http://localhost:3000/superhero/${apiKey}/${id}`;
+  console.log(`id is ${id}`);
+  fetch(url, {
+    method: 'GET',
+  })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network did not respond!');
+      }
+      return response.json();  // Parse the response as JSON
+    })
+    .then(data => {
+      console.log(data);
+    })
+    .catch(error => {
+      console.error('Error in fetch operation:', error.message);
+    });
+}
