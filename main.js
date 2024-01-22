@@ -1,4 +1,18 @@
 let apiKey;
+const usedIDs = [];
+
+const cardTemplate = (data) => `
+  <img style='width:100px' src=${data.image.url}></img>
+  <p>
+  Hero ID: ${data.id}<br>
+  Hero Name: ${data.name}<br>
+  Alias: ${data.biography['full-name']}<br>
+  Gender: ${data.appearance.gender}<br>
+  Strength: ${data.powerstats.strength}<br>
+  Alignment: ${data.biography.alignment}<br>
+  Comic Debut: ${data.biography['first-appearance']}
+  </p>
+`;
 
 function queryKey() {
   const userKey = document.getElementById('apiKey').value;
@@ -20,14 +34,18 @@ function queryKey() {
 function queryID() {
   const id = document.getElementById('ID').value;
   if (id.trim() !== '') {
-    console.log(id);
+    if(usedIDs.includes(id)){
+      alert('That hero is already implemented');
+      return;
+    }else{
+      usedIDs.push(id);
+    }
   } else {
-    alert('Please enter your API key.');
+    alert('Please enter an ID.');
     return;
   }
 
   var url = `http://localhost:3000/superhero/${apiKey}/${id}`;
-  console.log(`id is ${id}`);
   fetch(url, {
     method: 'GET',
   })
@@ -35,12 +53,25 @@ function queryID() {
       if (!response.ok) {
         throw new Error('Network did not respond!');
       }
-      return response.json();  // Parse the response as JSON
+      return response.json();
     })
     .then(data => {
-      console.log(data);
+      // console.log(data);
+      createCard(data, id);
     })
     .catch(error => {
       console.error('Error in fetch operation:', error.message);
-    });
+    });  
+}
+
+function createCard(data, id){
+  const container = document.getElementById('card-container');
+  console.log('hi');
+  console.log(data.name);
+
+  var card = document.createElement("div");
+  card.className = 'card';
+  card.id = id;
+  card.innerHTML = cardTemplate(data);
+  container.append(card);
 }

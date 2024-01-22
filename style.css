@@ -1,4 +1,20 @@
 body{
   display: flex;
   justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+}
+
+#card-container{
+  margin: 1px;
+}
+
+.card{
+  text-align: center;
+  border: 5px ridge #ff6550;
+  margin: 1px;
+  padding: 4px;
+  font-size: small;
+  font-family: 'Courier New', Courier, monospace;
 }
